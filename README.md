@@ -48,7 +48,7 @@ Simple pre commit hook to ensure no file references in package json get committe
 ```yaml
       - id: no-relative-packages
         name: no-relative-packages
-        entry: bash -c "git diff --cached --name-only | grep -q 'package.json' && cat package.json | grep -E 'file:.+\/\.yaln\/.+' && echo -e 'file references not allowed in package.json' 1>&2 && exit 1 || exit 0"
+        entry: bash -c "git diff --cached --name-only | grep -q 'package.json' && cat package.json | grep -E 'file:.+\/\.lnpm\/.+' && echo -e 'file references not allowed in package.json' 1>&2 && exit 1 || exit 0"
         language: system
         pass_filenames: false
 ```
