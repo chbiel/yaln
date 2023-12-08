@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "lib": ["es6", "dom", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2017",
+    "outDir": "dist"
+  },
+  "include": ["src/**/*.ts",],
+}

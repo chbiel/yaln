@@ -1,0 +1,31 @@
+{
+  "name": "yaln",
+  "version": "1.0.0",
+  "description": "Watch for local changes, pack them and install",
+  "homepage": "https://github.com/chbiel/yaln",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chbiel/yaln.git"
+  },
+  "files": ["dist"],
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf ./dist && tsc -p tsconfig.json && chmod +x dist/yaln.js",
+    "watch": "rm -rf ./dist && tsc-watch -p tsconfig.json --onSuccess 'chmod +x dist/yaln.js'",
+    "lintTs": "tsc -p tsconfig.json --noEmit"
+  },
+  "bin": "dist/yaln.js",
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "commander": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.1",
+    "prettier": "^3.1.0",
+    "tsc-watch": "^6.0.4",
+    "typescript": "^5.3.3"
+  }
+}
