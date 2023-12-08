@@ -1,10 +1,10 @@
+import fs from "node:fs";
+import path from "node:path";
 import { program } from "commander";
 import { execSync } from "child_process";
 import { EXCHANGE_PATH } from "./config.js";
-import path from "node:path";
-import fs from "node:fs";
 import { Installer } from "./installer.js";
-import {ensureExchangeDirectoryExists} from "./utils";
+import {ensureExchangeDirectoryExists} from "./utils.js";
 
 program.name("lnmp");
 
