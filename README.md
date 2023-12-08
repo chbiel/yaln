@@ -11,7 +11,7 @@ It will:
 
 ## Install
 
-    npm i -D @chbiel/yaln
+    npm i -g @chbiel/yaln
 
 Or from source
 
