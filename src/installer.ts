@@ -1,8 +1,8 @@
+import path from "node:path";
+import { execSync } from "child_process";
 import chokidar from "chokidar";
 import { EXCHANGE_PATH } from "./config.js";
-import path from "node:path";
 import {ensureExchangeDirectoryExists, getMostRecentFile} from "./utils.js";
-import { execSync } from "child_process";
 
 export class Installer {
   private readonly exchangePath: string;
