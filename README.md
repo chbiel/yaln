@@ -11,17 +11,13 @@ It will:
 
 ## Install
 
+    npm i -D @chbiel/yaln
+
+Or from source
+
     git clone ...
     cd ...
     npm i -g .
-
-Currently, there is no npm package available.
-
-## Update
-
-Simply git pull.
-
-
 
 ## Usage
 

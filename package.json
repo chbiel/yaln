@@ -1,7 +1,7 @@
 {
   "name": "@chbiel/yaln",
-  "version": "1.0.0",
-  "description": "Watch for local changes, pack them and install",
+  "version": "1.0.2",
+  "description": "Watch for local changes, pack them and install with npm",
   "homepage": "https://github.com/chbiel/yaln",
   "repository": {
     "type": "git",
