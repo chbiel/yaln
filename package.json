@@ -1,5 +1,5 @@
 {
-  "name": "yaln",
+  "name": "@chbiel/yaln",
   "version": "1.0.0",
   "description": "Watch for local changes, pack them and install",
   "homepage": "https://github.com/chbiel/yaln",
