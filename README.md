@@ -60,11 +60,9 @@ To ensure, that no local file references are committed to `package.json`, you ca
 
 # Known bugs
 
-- Looks like sometimes, when the first package update gets detected, the package gets installed twice
+- Looks like sometimes, when the first package update gets detected while using `watch`, the package gets installed twice
 
 # Missing features
 
 - Support `yarn`
-- Add command to add dependency without watch
 - Allow configuration of exchangePath
-- Add CommonJS support
