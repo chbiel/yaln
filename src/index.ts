@@ -11,7 +11,6 @@ program.name("yaln").version(packageJson.version).description("YALN - Yet Anothe
 
 program
   .command("watch")
-  .command("w")
   .description("Watch a package for changes")
   .argument("<packages...>", "List of packages to watch")
   .option("--debug", "enable debug mode", false)
@@ -26,7 +25,6 @@ program
 
 program
   .command("install")
-  .command('i')
   .description("Install the most recent version of a package")
   .argument("<packages...>", "List of packages to watch")
   .option("--debug", "enable debug mode", false)
