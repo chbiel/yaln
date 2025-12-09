@@ -5,11 +5,13 @@ import { execSync } from "child_process";
 import { EXCHANGE_PATH } from "./config.js";
 import { Installer } from "./installer.js";
 import {ensureExchangeDirectoryExists} from "./utils.js";
+import packageJson from "../package.json" with { type: "json" };
 
-program.name("lnmp");
+program.name("yaln").version(packageJson.version).description("YALN - Yet Another Local NPM");
 
 program
   .command("watch")
+  .command("w")
   .description("Watch a package for changes")
   .argument("<packages...>", "List of packages to watch")
   .option("--debug", "enable debug mode", false)
@@ -20,6 +22,21 @@ program
       w.enableDebug();
     }
     w.watch(packages);
+  });
+
+program
+  .command("install")
+  .command('i')
+  .description("Install the most recent version of a package")
+  .argument("<packages...>", "List of packages to watch")
+  .option("--debug", "enable debug mode", false)
+  .action((packages: string[], options) => {
+    const w = new Installer();
+    if (options.debug) {
+      console.log("DEBUG mode enabled");
+      w.enableDebug();
+    }
+    w.installMostRecentPackages(packages);
   });
 
 program

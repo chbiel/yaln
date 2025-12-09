@@ -2,7 +2,7 @@ import path from "node:path";
 import { execSync } from "child_process";
 import chokidar from "chokidar";
 import { EXCHANGE_PATH } from "./config.js";
-import {ensureExchangeDirectoryExists, getMostRecentFile} from "./utils.js";
+import { ensureExchangeDirectoryExists, getMostRecentFile } from "./utils.js";
 
 export class Installer {
   private readonly exchangePath: string;
@@ -18,36 +18,43 @@ export class Installer {
     this.debug = true;
   }
 
-  private handlePackageChange(filePath: string) {
+  public installMostRecentPackages(packages: string[]) {
+    packages.forEach((p) => {
+      const newestPackageFile = this.getMostRecentPackageFile(p);
+      if (newestPackageFile) {
+        console.log(`Installing '${p}'...`);
+        this.installPackageFile(newestPackageFile);
+      }
+    });
+  }
+  
+  private installPackageFile(filePath: string) {
     const packagePath = path.dirname(filePath);
     const newestPackageFile = getMostRecentFile(packagePath);
 
     if (newestPackageFile) {
-      console.info("Package update detected. Installing now...");
       execSync(`npm i ${path.join(packagePath, newestPackageFile.file)}`, {
         cwd: process.cwd(),
         stdio: "inherit",
       });
-      console.info("Package installed successfully!");
     } else {
       console.error(`No package file found in ${packagePath}`);
       process.exit(1);
     }
   }
 
+  public getMostRecentPackageFile(packageName: string): string | undefined {
+    const newestPackageFile = getMostRecentFile(
+      path.join(this.exchangePath, packageName),
+    )?.file;
+
+    return newestPackageFile
+      ? path.join(this.exchangePath, packageName, newestPackageFile)
+      : undefined;
+  }
+
   public watch(packages: string[]) {
-    
-    packages.forEach((p) => {
-      const newestPackageFile = getMostRecentFile(
-        path.join(this.exchangePath, p),
-      )?.file;
-      console.log(p, newestPackageFile);
-      if (newestPackageFile) {
-        console.log(`Initially installing '${p}'...`);
-        const filePath = path.join(this.exchangePath, p, newestPackageFile);
-        this.handlePackageChange(filePath);
-      }
-    });
+    this.installMostRecentPackages(packages);
 
     console.info("Start watching for changes of packages:");
     packages.forEach((p) => {
@@ -59,8 +66,17 @@ export class Installer {
       { ignoreInitial: true },
     );
 
-    this.watcher.on("add", this.handlePackageChange);
-    this.watcher.on("change", this.handlePackageChange);
+    this.watcher.on("add", (filePath) => {
+      console.info("Package update detected. Installing now...");
+      this.installPackageFile(filePath);
+      console.info("Package installed successfully!");
+    });
+
+    this.watcher.on("change", (filePath) => {
+      console.info("Package update detected. Installing now...");
+      this.installPackageFile(filePath);
+      console.info("Package installed successfully!");
+    });
 
     if (this.debug) {
       this.watcher.on("all", (event, path) => {

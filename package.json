@@ -10,11 +10,11 @@
   "files": ["dist"],
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf ./dist && tsc -p tsconfig.json && chmod +x dist/yaln.js",
+    "build": "rm -rf ./dist && tsc -p tsconfig.json && chmod +x dist/src/yaln.js",
     "watch": "rm -rf ./dist && tsc-watch -p tsconfig.json --onSuccess 'chmod +x dist/yaln.js'",
     "lintTs": "tsc -p tsconfig.json --noEmit"
   },
-  "bin": "dist/yaln.js",
+  "bin": "dist/src/yaln.js",
   "type": "module",
   "author": "",
   "license": "ISC",
