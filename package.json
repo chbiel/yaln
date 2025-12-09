@@ -1,13 +1,15 @@
 {
   "name": "@chbiel/yaln",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Watch for local changes, pack them and install with npm",
   "homepage": "https://github.com/chbiel/yaln",
   "repository": {
     "type": "git",
     "url": "https://github.com/chbiel/yaln.git"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "index.js",
   "scripts": {
     "build": "rm -rf ./dist && tsc -p tsconfig.json && chmod +x dist/src/yaln.js",
